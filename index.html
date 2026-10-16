@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11120f">
+  <title>CINÉ CLUB — выбираем кино</title>
+  <link rel="preconnect" href="https://m.media-amazon.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#discover" aria-label="Ciné Club, главная"><span class="brand-mark">c<span>·</span></span><span class="brand-name">CINÉ<br>CLUB<span class="brand-period">.</span></span></a>
+      <div class="side-label">ТВОЯ КИНОТЕКА</div>
+      <nav class="nav" aria-label="Основная навигация">
+        <button class="nav-item active" data-view="discover"><span class="nav-icon">✳</span> Подобрать кино <span class="nav-count">01</span></button>
+        <button class="nav-item" data-view="saved"><span class="nav-icon">♡</span> В избранном <span class="nav-badge" id="savedCount">0</span></button>
+        <button class="nav-item" data-view="passed"><span class="nav-icon">↗</span> Уже видел(а) / пропуск <span class="nav-badge" id="passedCount">0</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-note"><span class="note-dot"></span><span>Меньше скролла.<br>Больше хорошего кино.</span></div>
+        <div class="api-credit">MOVIE DATA BY<br><strong>OMDb API</strong></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb"><span>ЛИЧНЫЙ КИНОКЛУБ</span><span class="crumb-slash">/</span><span id="breadcrumbCurrent">ПОДБОРКА</span></div>
+        <div class="topbar-right"><span class="live-dot"></span><span id="apiStatus">подключаемся к OMDb</span><button class="avatar" title="Твой профиль">✳</button></div>
+      </header>
+
+      <section id="discoverView" class="view">
+        <div class="hero-row">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> ВЕЧЕР НАЧИНАЕТСЯ ЗДЕСЬ</div><h1>Что будем<br><span>смотреть?</span><i class="lime-dot">.</i></h1><p class="hero-copy">Три случайных варианта из большой кино-вселенной.<br>Отмечай сердцем, а лишнее отправляй дальше.</p></div>
+          <div class="hero-stamp"><span class="stamp-top">YOUR PERSONAL</span><span class="stamp-big">FILM<br>SCOUT</span><span class="stamp-bottom">EST. FOR TONIGHT ↘</span><svg viewBox="0 0 100 12" aria-hidden="true"><path d="M1 6H94M87 1L95 6L87 11"/></svg></div>
+        </div>
+
+        <div class="toolbar">
+          <div class="filters"><label for="genreSelect">ЖАНР</label><div class="select-wrap"><select id="genreSelect"><option value="">Все жанры</option></select><span>⌄</span></div></div>
+          <div class="toolbar-right"><span class="result-note" id="resultNote">ПОДБОРКА ИЗ 3 ФИЛЬМОВ</span><button class="refresh-btn" id="refreshBtn"><span>↻</span> Другая подборка</button></div>
+        </div>
+
+        <div id="errorBox" class="error-box hidden"></div>
+        <div id="loading" class="loading-state"><div class="loader"></div><span>ИЩЕМ ЧТО-ТО ХОРОШЕЕ...</span></div>
+        <div id="movieGrid" class="movie-grid"></div>
+        <div class="bottom-hint"><span class="hint-symbol">↳</span><span>НАЖМИ <b>ДА</b>, ЧТОБЫ СОХРАНИТЬ. <b>НЕТ</b> — ЧТОБЫ УВИДЕТЬ СЛЕДУЮЩЕЕ.</span><span class="hint-line"></span><span class="hint-index">01 — 03</span></div>
+        <div class="tmdb-notice">Movie data provided by OMDb API. Poster and movie metadata may be incomplete.</div>
+      </section>
+
+      <section id="collectionView" class="view hidden">
+        <div class="collection-heading"><div class="eyebrow"><span class="eyebrow-line"></span> ТВОЯ КОЛЛЕКЦИЯ</div><h1 id="collectionTitle">Избранное<span class="lime-dot">.</span></h1><p class="hero-copy" id="collectionCopy">Фильмы, которые хочется посмотреть.</p></div>
+        <div id="collectionGrid" class="collection-grid"></div>
+        <div id="emptyCollection" class="empty-state hidden"><span class="empty-icon">✳</span><h2>Здесь пока тихо</h2><p>Вернись к подборке и найди что-нибудь для своего вечера.</p><button class="primary-btn" id="backToDiscover">Подобрать кино <span>↗</span></button></div>
+        <div class="tmdb-notice">Movie data provided by OMDb API. Poster and movie metadata may be incomplete.</div>
+      </section>
+      <footer class="footer"><span>DESIGNED FOR THE LOVE OF FILM <b>✳</b></span><span>© CINÉ CLUB 2026</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
